@@ -1,0 +1,93 @@
+CREATE TABLE Follows(
+	started CHAR(8),
+	follower CHAR(20),
+	followee CHAR(20),
+	PRIMARY KEY(follwee, followee),
+	FOREIGN KEY (folowee) REFERENCES Users,
+	FOREIGN KEY (folower) REFERENCES Users);
+
+CREATE TABLE Users(
+	uid CHAR(20),
+	name CHAR(20),
+	email CHAR(20),
+	city CHAR(20),
+	timeZone CHAR(5),
+	PRIMARY KEY(uid));
+
+CREATE TABLE Verified(
+	vdate CHAR(8),
+	uid CHAR(20),
+	PRIMARY KEY(uid),
+	FOREIGN KEY(uid) REFERENCES Users
+	ON DELETE CASCADE);
+
+CREATE TABLE Protected(
+	uid CHAR(20),
+	PRIMARY KEY(uid),
+	FOREIGN KEY(uid) REFERENCES Users
+	ON DELETE CASCADE);
+
+CREATE TABLE Lists(
+	name CHAR(12),
+	creator CHAR(20) NOT NULL,
+	PRIMARY KEY(name, uid),
+	FOREIGN KEY(creator) REFERENCES Users,
+	ON DELETE CASCADE);
+
+CREATE TABLE Includes(
+	name CHAR(12),
+	uid CHAR(20),
+	PRIMARY KEY(name,uid),
+	FOREIGN KEY(name) REFERENCES Lists,
+	FOREIGN KEY(uid) REFERENCES Users);
+
+CREATE TABLE Tweets(
+	tdate CHAR(8),
+	uid CHAR(20) NOT NULL,
+	text CHAR(140),
+	PRIMARY KEY(tdate, uid),
+	FOREIGN KEY(uid) REFERENCES Users,
+	ON DELETE CASCADE);
+
+CREATE TABLE Retweets(
+	op CHAR(20),
+	uid CHAR(20),
+	tdate(8),
+	PRIMARY KEY(op,uid,t_date),
+	FOREIGN KEY(tdate,op) REFERENCES tweets,
+	FOREIGN KEY(uid) REFERENCES Users);
+
+CREATE TABLE hashtags(
+	term CHAR(20),
+	PRIMARY KEY(term));
+
+CREATE TABLE URLs(
+	longURL CHAR(40),
+	sortURL CHAR(20),
+	PRIMARY KEY(shortURL));
+
+CREATE TABLE mention_sU(
+	uid CHAR(20),
+	tdate CHAR(8),
+	url CHAR(20),
+	PRIMARY KEY(tdate,uid,url),
+	FOREIGN KEY(tdate,uid) REFERENCES Tweets,
+	FOREIGN KEY(url) REFERENCES URLs);
+
+CREATE TABLE mention_sH(
+	uid CHAR(20),
+	tdate CHAR(8),
+	term CHAR(20),
+	PRIMARY KEY(tdate,uid,term),
+	FOREIGN KEY(tdate,uid) REFERENCES Tweets,
+	FOREIGN KEY(term) REFERENCES hashtags);
+
+CREATE TABLE replto(
+	originalId CHAR(20),
+	o_date CHAR(8),
+	replyId CHAR(20),
+	r_date CHAR(8),
+	PRIMARY KEY(r_date, replyId),
+	FOREIGN KEY(r_date, replyId) REFERECES Tweets,
+	FOREIGN KEY(o_date, originalId) REFERECES Tweets);
+

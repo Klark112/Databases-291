@@ -1,0 +1,14 @@
+Klark Diagram
+     Item Entity:
+	- Makes sense to make items a weak entity of order as it can be considered a part of it.
+	  However items also have an association with other entities as well so it may not necesarily be best to
+	  label it as a weak entity. 
+	- method makes it so items also needs additional attributes
+	- weak entity is missing constraints
+     Customer Entity:
+	- not sure if separate customer entity is needed given the database specification as it suggests we
+	  should keep track of each individual customer. 
+     Review Entity:
+	- Reviews are part of the order so it would make sense to label this as a "weak entity".
+
+Sid Diagram
