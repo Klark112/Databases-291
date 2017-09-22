@@ -1,0 +1,36 @@
+Category:
+	"Each product belongs to a category"
+	-Arrow should be from Product direction
+	-Dont think there should be a dark arrow as products can belong to more than one category (See Lab)
+	-If do dark arrow from category then it would not satisfy that "product belong to category"
+
+Store:
+	-Think there should be a dark line from store - carries - product. (Each store will have 1 or more products)
+	-Your way might make more sense as the question does not specify that a store can carry no products also.
+
+Customer:
+	- "Customer can place order"
+	- makes sense to put arrow since a customer can - not place an order
+	-Don't know how to include situation where a customer places more than 1 order.
+	(But that might be redundant)
+	- slight possibility of it being a dark line.
+
+Item:
+	-should be a weak entity as an item belongs to an order. And has no primary key of its own.
+	- Makes sense that Item is an ISA of product (but they are also the same thing). 
+	-Think there should be a Ternary relationship between Product, Item, Store since:
+	 "Each item in an order is associated to a product and a store, and for each such item, a quantity (or weight), and a price per unit that is charged is given."
+	So believe it is saying that there should be a specific price and quantity of Items for a specific store and product.
+
+Delivery:
+	- Don't think that it should have an arrow; as think that their can be more than one delivery that can have more than 1 orders.
+
+Driver:
+	-dont think it should be a weak entity as it has it's own primary key(also we do not do weak entity in that format)
+
+Review:
+	-Shouldnt be a weak entity as it has a unique review ID (Primary Key).
+	-should be a normal arrow not a dark arrow since:
+	 "a review is sometimes written" 
+	should be a light arrow.
+	there shouldn't be any arrow from order as there can be more than 1 orders that can have a review written.
